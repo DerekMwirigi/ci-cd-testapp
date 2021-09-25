@@ -1,0 +1,36 @@
+# define image for ci/cd playground orchestration
+image: docker:git
+
+services:
+  - docker:19.03.5-dind
+
+# define ci/cd stages
+stages:
+  # - cache
+  - build
+  - test
+  - release
+  # - deploy
+
+# define variables
+variables:
+  APP_CONTAINER_TEST_IMAGE: registry.gitlab.com/DerekPRINCE/cicd-test:test
+  APP_CONTAINER_RELEASE_IMAGE: registry.gitlab.com/DerekPRINCE/cicd-test:latest
+  P_GITLAB_DEPLOY_USER: gitlab-ci-token
+  P_GITLAB_DEPLOY_TOKEN: ifx1C2tWtM62WqDwvH-C
+
+# #define caching
+# cache:
+#   paths:
+#     - "$CI_PROJECT_DIR/pip-cache"
+#   key: "$CI_PROJECT_ID"
+
+build_app:
+  stage: build
+  script:
+    - cd docker
+    - docker login -u $P_GITLAB_DEPLOY_USER -p $P_GITLAB_DEPLOY_TOKEN registry.gitlab.com
+    - docker build -t $APP_CONTAINER_TEST_IMAGE .
+    - docker push $APP_CONTAINER_TEST_IMAGE
+  only:
+    - staging

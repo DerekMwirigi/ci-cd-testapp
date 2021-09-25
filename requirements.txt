@@ -1,0 +1,35 @@
+# utils
+redis==3.5.3
+nbimporter==0.3.4
+
+# data analysis
+pandas==0.23.4
+jupyter==1.0.0
+jupyterlab==0.31.8
+matplotlib==2.0.0
+scipy==0.19.0
+cufflinks==0.14.6
+plotly==3.2.0
+psutil==5.4.8
+xlrd >= 0.9.0
+openpyxl==2.6.2
+
+# beni
+scikit-learn==0.20
+keras==2.1.3
+tensorflow==1.5.0
+sklearn==0.0
+h5py==2.7.1
+seaborn==0.8.1
+imblearn==0.0
+statsmodels==0.8.0
+gspread==3.1.0
+gspread-dataframe==3.0.2
+oauth2client==4.1.3
+
+# dev
+jupyter_nbextensions_configurator
+ipython
+ipdb
+ipdbplugin
+readline
